@@ -1,6 +1,8 @@
+import java.util.*;
 public class Warmup_2 {
     public static void main(String[] args) {
-
+        int[] arr={1, 1, 1, 2, 2, 2, 1};
+        System.out.println("noTriples(arr) = " + noTriples(arr));
     }
 
     public String stringTimes(String str, int n) {
@@ -11,7 +13,11 @@ stringTimes("Hi", 2) → "HiHi"
 stringTimes("Hi", 3) → "HiHiHi"
 stringTimes("Hi", 1) → "Hi"
  */
-        return "";
+        String result="";
+        for (int i = 0; i < n; i++) {
+            result+=str;
+        }
+        return result;
     }
 
     boolean doubleX(String str) {
@@ -22,6 +28,13 @@ doubleX("axxbb") → true
 doubleX("axaxax") → false
 doubleX("xxxxx") → true
  */
+        for (int i = 0; i < str.length() - 1; i++) {
+            if(str.substring(i,i+1).equals("x")){
+                if(str.substring(i+1,i+2).equals("x")){
+                    return true;
+                }else return false;
+            }
+        }
         return false;
     }
 
@@ -34,7 +47,13 @@ last2("hixxhi") → 1
 last2("xaxxaxaxx") → 1
 last2("axxxaaxx") → 2
  */
-        return 0;
+        int count=0;
+        for (int i = 0; i < str.length() - 2; i++) {
+            if(str.substring(i,i+2).equals(str.substring(str.length()-2))){
+                count++;
+            }
+        }
+        return count;
     }
 
     public boolean array123(int[] nums) {
@@ -45,9 +64,13 @@ array123([1, 1, 2, 3, 1]) → true
 array123([1, 1, 2, 4, 1]) → false
 array123([1, 1, 2, 1, 2, 3]) → true
  */
-        return false;
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        return set.contains(1)&& set.contains(2)&&set.contains(3);
     }
-    public String altPairs(String str) {
+    public static String altPairs(String str) {
 /*
 Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" yields "kien".
 
@@ -55,21 +78,35 @@ altPairs("kitten") → "kien"
 altPairs("Chocolate") → "Chole"
 altPairs("CodingHorror") → "Congrr"
  */
-        return "";
+        String result = "";
+        for (int i = 0; i < str.length(); ) {
+            if(str.length()<2){
+                return str;
+            }
+            result+=str.substring(i,i+2);
+            i+=4;
+            if(i==str.length()-1){
+                result+=str.substring(i,i+1);
+                i++;
+            }
+        }
+        return result;
     }
 
-    public boolean noTriples(int[] nums) {
+    public static boolean noTriples(int[] nums) {
 /*
-
 Given an array of ints, we'll say that a triple is a value appearing 3 times in a row in the array.
 Return true if the array does not contain any triples.
-
 
 noTriples([1, 1, 2, 2, 1]) → true
 noTriples([1, 1, 2, 2, 2, 1]) → false
 noTriples([1, 1, 1, 2, 2, 2, 1]) → false
  */
-        return false;
+        if(nums.length<3) return true;
+        for (int i = 0; i <nums.length-2 ; i++) {
+            if(nums[i]==nums[i+1]&& nums[i+1]==nums[i+2]) return false;
+        }
+        return true;
     }
 
     public String frontTimes(String str, int n) {
@@ -81,7 +118,12 @@ frontTimes("Chocolate", 2) → "ChoCho"
 frontTimes("Chocolate", 3) → "ChoChoCho"
 frontTimes("Abc", 3) → "AbcAbcAbc"
  */
-        return "";
+        String result="";
+        for (int i = 0; i < n; i++) {
+            if(str.length()>3) result+=str.substring(0,3);
+            else result+=str;
+        }
+        return result;
     }
 
     public String stringBits(String str) {
@@ -92,7 +134,12 @@ stringBits("Hello") → "Hlo"
 stringBits("Hi") → "H"
 stringBits("Heeololeo") → "Hello"
  */
-        return "";
+        String result="";
+        for (int i = 0; i < str.length(); ) {
+            result+=str.substring(i,i+1);
+            i+=2;
+        }
+        return result;
     }
 
     public int arrayCount9(int[] nums) {
@@ -103,7 +150,11 @@ arrayCount9([1, 2, 9]) → 1
 arrayCount9([1, 9, 9]) → 2
 arrayCount9([1, 9, 9, 3, 9]) → 3
  */
-        return 0;
+        int count=0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i]==9) count++;
+        }
+        return count;
     }
 
     public int stringMatch(String a, String b) {
@@ -115,7 +166,11 @@ stringMatch("xxcaazz", "xxbaaz") → 3
 stringMatch("abc", "abc") → 2
 stringMatch("abc", "axc") → 0
  */
-        return 0;
+        int count=0;
+        for (int i = 0; i < a.length() - 1; i++) {
+            if(i<b.length()-1 && a.substring(i,i+2).equals(b.substring(i,i+2))) count++;
+        }
+        return count;
     }
 
     public String stringYak(String str) {
@@ -127,7 +182,7 @@ stringYak("yakpak") → "pak"
 stringYak("pakyak") → "pak"
 stringYak("yak123ya") → "123ya"
  */
-        return "";
+        return str.replace("yak","");
     }
 
     public boolean has271(int[] nums) {
@@ -139,6 +194,13 @@ has271([1, 2, 7, 1]) → true
 has271([1, 2, 8, 1]) → false
 has271([2, 7, 1]) → true
  */
+        for (int i = 0; i < nums.length - 2; i++) {
+            int num=nums[i];
+            if (nums[i+1]==num+5) {
+                if(nums[i+2]==num-1) return true;
+                else if(Math.abs(nums[i+2]-(num-1))<=2) return true;    //abs mutlak değer demek
+            }
+        }
         return false;
     }
 
@@ -150,7 +212,11 @@ countXX("abcxx") → 1
 countXX("xxx") → 2
 countXX("xxxx") → 3
  */
-        return 0;
+        int count=0;
+        for (int i = 0; i < str.length() - 1; i++) {
+            if(str.substring(i,i+2).equals("xx")) count++;
+        }
+        return count;
     }
 
     public String stringSplosion(String str) {
@@ -161,7 +227,11 @@ stringSplosion("Code") → "CCoCodCode"
 stringSplosion("abc") → "aababc"
 stringSplosion("ab") → "aab"
  */
-        return "";
+        String result="";
+        for (int i = 0; i < str.length()+1; i++) {
+            result+=str.substring(0,i);
+        }
+        return result;
     }
 
     public boolean arrayFront9(int[] nums) {
@@ -174,6 +244,10 @@ arrayFront9([1, 2, 9, 3, 4]) → true
 arrayFront9([1, 2, 3, 4, 9]) → false
 arrayFront9([1, 2, 3, 4, 5]) → false
  */
+        for (int i = 0; i < 4; i++) {
+            if(nums.length==i) break;
+            if (nums[i]==9) return true;
+        }
         return false;
     }
     public String stringX(String str) {
@@ -185,7 +259,8 @@ stringX("xxHxix") → "xHix"
 stringX("abxxxcd") → "abcd"
 stringX("xabxxxcdx") → "xabcdx"
  */
-        return "";
+        if(str.length()<2) return str;
+        return str.substring(0,1)+str.substring(1,str.length()-1).replace("x","")+str.substring(str.length()-1);
     }
 
     public int array667(int[] nums) {
@@ -197,7 +272,13 @@ array667([6, 6, 2]) → 1
 array667([6, 6, 2, 6]) → 1
 array667([6, 7, 2, 6]) → 1
  */
-        return 0;
+        int count=0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if((nums[i]==6 && nums[i+1]==6)|| (nums[i]==6 && nums[i+1]==7) ){
+                count++;
+            }
+        }
+        return count;
     }
 
 }
