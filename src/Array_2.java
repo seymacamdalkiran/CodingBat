@@ -1,9 +1,13 @@
+import java.util.Arrays;
+
 public class Array_2 {
     public static void main(String[] args) {
+        int[] ar={2,5,3,7,0};
+        System.out.println(" = " + Arrays.toString(fizzArray(10)));
 
     }
 
-    public int countEvens(int[] nums) {
+    public static int countEvens(int[] nums) {
         /*
          Return the number of even ints in the given array. Note: the % "mod"
          operator computes the remainder, e.g. 5 % 2 is 1.
@@ -12,10 +16,16 @@ public class Array_2 {
         countEvens([2, 2, 0]) → 3
         countEvens([1, 3, 5]) → 0
          */
-        return 0;
+        int remainder=0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i]%2==0){
+                remainder+=1;
+            }
+        }
+        return remainder;
     }
 
-    public int sum13(int[] nums) {
+    public static int sum13(int[] nums) {
         /*
         Return the sum of the numbers in the array, returning 0 for an empty array. Except the number 13 is very
         unlucky, so it does not count and numbers that come immediately after a 13 also do not count.
@@ -24,10 +34,18 @@ public class Array_2 {
         sum13([1, 1]) → 2
         sum13([1, 2, 2, 1, 13]) → 6
          */
-        return 0;
+        int sum=0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i]==13 || (i>0 && nums[i-1]==13)){
+                continue;
+            }
+            sum+=nums[i];
+        }
+
+        return sum;
     }
 
-    public boolean lucky13(int[] nums) {
+    public static boolean lucky13(int[] nums) {
         /*
         Given an array of ints, return true if the array contains no 1's and no 3's.
 
@@ -36,10 +54,15 @@ public class Array_2 {
         lucky13([1, 2, 3]) → false
         lucky13([1, 2, 4]) → false
          */
-        return false;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i]==1 || nums[i]==3){
+                return false;
+            }
+        }
+        return true;
     }
 
-    public int[] fizzArray(int n) {
+    public static int[] fizzArray(int n) {
         /*
 
         Given a number n, create and return a new int array of length n, containing the numbers
@@ -51,7 +74,10 @@ public class Array_2 {
         fizzArray(1) → [0]
         fizzArray(10) → [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
          */
-        int[] arr=new int[0];
+        int[] arr=new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i]=i;
+        }
         return arr;
     }
 

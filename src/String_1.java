@@ -1,6 +1,8 @@
 public class String_1 {
     public static void main(String[] args) {
         System.out.println("atFirst(\"h\") = " + atFirst("h"));
+
+
     }
     public String helloName(String name) {
         /*
@@ -25,13 +27,13 @@ public class String_1 {
     }
 
     public String firstHalf(String str) {
-/*
+        /*
         Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
 
         firstHalf("WooHoo") → "Woo"
         firstHalf("HelloThere") → "Hello"
         firstHalf("abcdef") → "abc"
- */
+        */
         return str.substring(0,str.length()/2);
     }
 
