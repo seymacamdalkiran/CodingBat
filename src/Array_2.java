@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class Array_2 {
     public static void main(String[] args) {
-        int[] ar={2,5,3,7,0};
-        System.out.println(" = " + Arrays.toString(fizzArray(10)));
+        int[] ar={2,5,1,4,3,7,0};
+        System.out.println(" = " + no14(ar));
 
     }
 
@@ -81,7 +81,7 @@ public class Array_2 {
         return arr;
     }
 
-    public boolean no14(int[] nums) {
+    public static boolean no14(int[] nums) {
         /*
         Given an array of ints, return true if it contains no 1's or it contains no 4's.
 
@@ -89,7 +89,16 @@ public class Array_2 {
         no14([1, 2, 3, 4]) → false
         no14([2, 3, 4]) → true
          */
-        return false;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]==1 ){
+                for (int j = 0; j < nums.length ; j++) {
+                    if(nums[j]==4){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public int matchUp(int[] nums1, int[] nums2) {
